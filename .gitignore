@@ -1,0 +1,5 @@
+.env.mk
+.helm/
+.DS_Store
+.aws_key.mk
+aws_key.sh
