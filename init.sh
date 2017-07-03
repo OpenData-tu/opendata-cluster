@@ -25,10 +25,11 @@ make install_ui install_monitoring
 make get_ui_password
 
 # Install Kafka
+sleep 3
 helm install --name opendata -f component/kafka/values.yaml incubator/kafka
 
 # Install elasticsearch
-kubectl create -f component/elasticsearch/production_cluster/
+kubectl create -f component/elasticsearch/
 kubectl annotate service elasticsearch dns.alpha.kubernetes.io/external=es.${DNS_ZONE}
 
 # Scale elasticsearch
