@@ -21,7 +21,7 @@ init: ## Create the cluster and install everything
 cluster_init: cluster_create cluster_update
 
 cluster_update:
-	kops update cluster $(CLUSTER_NAME) --yes
+	kops update cluster $(NAME) --yes
 
 cluster_create:
 	akops create cluster \
@@ -41,7 +41,7 @@ cluster_create:
 	--name $(NAME)
 
 cluster_delete: ## Removes all the cluster permanently
-	kops delete cluster $(CLUSTER_NAME) --yes
+	kops delete cluster $(NAME) --yes
 
 # Monitoring
 install_monitoring:

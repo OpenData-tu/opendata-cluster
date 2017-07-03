@@ -7,7 +7,6 @@ while [ ture ]
 do
   ip=$(dig $API_DOMAIN +short | head -1)
   if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-    echo "DNS updated!";
     break;
   fi
   printf "."
