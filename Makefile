@@ -7,13 +7,18 @@
 help:
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-.env.mk: ./config/env.sh ## Load environment variables from env.sh
+# Load environment variables from env.sh
+.env.mk: ./config/env.sh
 	@sed 's/"//g ; s/=/:=/' < $< > $@
 
 .aws_key.mk: ./config/aws_key.sh
 	@sed 's/"//g ; s/=/:=/' < $< > $@
 
-cluster_init: cluster_create cluster_update ## Initiates the whole cluster.
+init: ## Create the cluster and install everything
+	bash ./scripts/init
+
+# Initiates the whole cluster.
+cluster_init: cluster_create cluster_update
 
 cluster_update:
 	kops update cluster $(CLUSTER_NAME) --yes
@@ -35,7 +40,7 @@ cluster_create:
 	--bastion="true" \
 	--name $(NAME)
 
-cluster_delete: # Removes all the cluster permanently
+cluster_delete: ## Removes all the cluster permanently
 	kops delete cluster $(CLUSTER_NAME) --yes
 
 # Monitoring
@@ -43,14 +48,16 @@ install_monitoring:
 	@kubectl create -f $(MONITORING)
 
 # Dashboard
-install_ui: ## Deploys Kube's Dashboard
+# Deploys Kube's Dashboard
+install_ui:
 	@kubectl create -f $(UI)
 
 get_ui_password: ## Gets the password of the Dashboard
 	@kubectl config view --minify | grep -e username -e password -e server
 
 # Explorer
-install_explorer: ## Deploys an explorer box.
+# Deploys an explorer box.
+install_explorer:
 	@kubectl create -f $(EXPLORER)
 
 delete_explorer:
