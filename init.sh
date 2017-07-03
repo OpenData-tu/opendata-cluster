@@ -7,7 +7,7 @@ cat ./.name
 make cluster_init
 
 # Set the context
-kubectl config use-context ${CLUSTER_NAME}
+# Kops will set your kubectl context to od.o.thinkdeep.io
 
 # Wait until the cluster is ready
 (exec ./wait.sh)
