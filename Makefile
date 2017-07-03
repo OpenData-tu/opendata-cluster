@@ -37,7 +37,7 @@ cluster_create:
 	--network-cidr=10.0.0.0/16 \
 	--networking weave \
 	--topology private \
-	--bastion="true" \
+	--bastion \
 	--name $(NAME)
 
 cluster_delete: ## Removes all the cluster permanently
