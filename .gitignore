@@ -1,5 +1,5 @@
+.aws_key.mk
 .env.mk
 .helm/
 .DS_Store
-.aws_key.mk
-aws_key.sh
+config/aws_key.sh

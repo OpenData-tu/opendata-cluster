@@ -1,8 +1,8 @@
 #!/bin/bash
-source ./aws_key.sh
-source ./env.sh
-source ./colors.sh
-cat ./.name 
+source  ./config/aws_key.sh
+source  ./config/env.sh
+source  ./scripts/colors.sh
+cat     ./scripts/.name 
 
 make cluster_init
 
@@ -10,7 +10,10 @@ make cluster_init
 # Kops will set your kubectl context to od.o.thinkdeep.io
 
 # Wait until the cluster is ready
-(exec ./wait.sh)
+(exec ./scripts/wait_cluster.sh)
+
+# Wait for DNS to update
+(exec ./scripts/wait_dns.sh)
 
 # Remove the old helm and install the new one
 make helm_delete
@@ -22,10 +25,12 @@ source <(helm completion zsh)
 
 # Install Kube Dashboard and Monitoring & Get the Dashboard's password
 make install_ui install_monitoring
-make get_ui_password
+
+
+# Wait for helm client to deploy
+(exec ./scripts/wait_helm.sh)
 
 # Install Kafka
-sleep 3
 helm install --name opendata -f component/kafka/values.yaml incubator/kafka
 
 # Install elasticsearch

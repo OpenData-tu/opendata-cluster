@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./colors.sh
+source ./scripts/colors.sh
 echo -n "Waiting for cluster components to become ready."
 until [ $(kubectl get cs 2> /dev/null| grep -e Healthy | wc -l | xargs) -ge 4 ]
 do

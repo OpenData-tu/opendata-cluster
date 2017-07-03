@@ -7,10 +7,10 @@
 help:
 	@fgrep -h "##" $(MAKEFILE_LIST) | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
-.env.mk: env.sh ## Load environment variables from env.sh
+.env.mk: ./config/env.sh ## Load environment variables from env.sh
 	@sed 's/"//g ; s/=/:=/' < $< > $@
 
-.aws_key.mk: aws_key.sh
+.aws_key.mk: ./config/aws_key.sh
 	@sed 's/"//g ; s/=/:=/' < $< > $@
 
 cluster_init: cluster_create cluster_update ## Initiates the whole cluster.
