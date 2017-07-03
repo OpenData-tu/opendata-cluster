@@ -45,7 +45,6 @@ install_monitoring:
 # Dashboard
 install_ui: ## Deploys Kube's Dashboard
 	@kubectl create -f $(UI)
-	@make get_ui_password
 
 get_ui_password: ## Gets the password of the Dashboard
 	@kubectl config view --minify | grep -e username -e password -e server

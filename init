@@ -20,12 +20,11 @@ make helm_delete
 make helm_init
 make helm_add_repos
 
-source <(kubectl completion zsh)
-source <(helm completion zsh)
-
-# Install Kube Dashboard and Monitoring & Get the Dashboard's password
+# Install Kube Dashboard and Monitoring 
 make install_ui install_monitoring
 
+# Get the Dashboard's password
+make get_ui_password
 
 # Wait for helm client to deploy
 (exec ./scripts/wait_helm.sh)
@@ -41,3 +40,10 @@ kubectl annotate service elasticsearch dns.alpha.kubernetes.io/external=es.${DNS
 kubectl scale rc --replicas=3 es-data
 
 cecho "Done." green 
+echo
+cecho "For auto completion run the following commands:" blue
+cecho "source <(kubectl completion zsh)" green
+cecho "source <(helm completion zsh)" green
+echo
+
+make get_ui_password
