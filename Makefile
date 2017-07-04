@@ -15,13 +15,13 @@ help:
 	@sed 's/"//g ; s/=/:=/' < $< > $@
 
 init: ## Create the cluster and install everything
-	bash ./scripts/init
+	@bash ./scripts/init
 
 # Initiates the whole cluster.
 cluster_init: cluster_create cluster_update
 
 cluster_update:
-	kops update cluster $(NAME) --yes
+	@kops update cluster $(NAME) --yes
 
 cluster_create:
 	akops create cluster \
