@@ -44,6 +44,7 @@ echo
 cecho "For auto completion run the following commands:" blue
 cecho "source <(kubectl completion zsh)" green
 cecho "source <(helm completion zsh)" green
+cecho "source <(kops completion zsh)" green
 echo
 
 make get_ui_password

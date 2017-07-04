@@ -25,19 +25,21 @@ cluster_update:
 
 cluster_create:
 	akops create cluster \
-	--zones="us-east-2b" \
+	--cloud=aws \
+	--zones=$(ZONES) \
 	--node-count=$(NODE_COUNT) \
 	--node-size=r4.large \
 	--node-price=0.015 \
-	--master-zones="us-east-2b" \
+	--master-zones=$(MASTER_ZONES) \
 	--master-size=r4.large \
 	--master-price=0.015 \
 	--dns-zone=$(DNS_ZONE) \
-	--cloud-labels="Owner=Amer,Stack=K8s-opendata" \
-	--network-cidr=10.0.0.0/16 \
+	--cloud-labels=$(CLOUD_LABELS) \
+	--network-cidr=$(NETWORK_CIDR) \
 	--networking weave \
 	--topology private \
 	--bastion \
+	--kubernetes-version=1.7.0 \
 	--name $(NAME)
 
 cluster_delete: ## Removes all the cluster permanently
