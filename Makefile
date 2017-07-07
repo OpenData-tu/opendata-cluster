@@ -17,6 +17,8 @@ help:
 init: ## Create the cluster and install everything
 	@bash ./scripts/init
 
+down: cluster_delete
+
 # Initiates the whole cluster.
 cluster_init: cluster_create cluster_update
 
