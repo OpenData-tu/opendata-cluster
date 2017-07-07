@@ -1,5 +1,6 @@
 export NAME=o.thinkdeep.io
 export CLUSTER_NAME=${NAME}
+export USER_NAME=kops
 export DNS_ZONE=o.thinkdeep.io
 export KOPS_STATE_STORE=s3://o-thinkdeep-io-state-store
 

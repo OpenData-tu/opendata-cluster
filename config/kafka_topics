@@ -1,0 +1,3 @@
+#/bin/bash
+kafka_topics=(wdi test1)
+

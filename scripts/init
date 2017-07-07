@@ -6,7 +6,6 @@ cat     ./scripts/.name
 
 make cluster_init
 
-# Set the context
 # Kops will set your kubectl context to od.o.thinkdeep.io
 
 # Wait until the cluster is ready
@@ -20,17 +19,29 @@ make helm_delete
 make helm_init
 make helm_add_repos
 
-# Install Kube Dashboard and Monitoring 
-make install_ui install_monitoring
+# Install Kube Dashboard 
+make install_ui 
 
-# Get the Dashboard's password
-make get_ui_password
+# Install Heapster
+make install_monitoring
 
 # Wait for helm client to deploy
 (exec ./scripts/wait_helm.sh)
 
+# Install logging-elasticsearch
+kubectl create -f ./component/logging/ 
+
+# Create namespace Kafka
+kubectl create ns kafka
+
+# Install Zookeeper
+kubectl create -f ./component/zookeeper/
+
 # Install Kafka
-helm install --name opendata -f component/kafka/values.yaml incubator/kafka
+kubectl create -f ./component/kafka/
+(exec ./scripts/wait_kafka.sh)
+(exec ./scripts/create_kafka_topics.sh)
+
 
 # Install elasticsearch
 kubectl create -f component/elasticsearch/
@@ -40,6 +51,9 @@ kubectl annotate service elasticsearch dns.alpha.kubernetes.io/external=es.${DNS
 kubectl scale rc --replicas=3 es-data
 
 cecho "Done." green 
+
+kubectl cluster-info
+
 echo
 cecho "For auto completion run the following commands:" blue
 cecho "source <(kubectl completion zsh)" green
@@ -47,4 +61,5 @@ cecho "source <(helm completion zsh)" green
 cecho "source <(kops completion zsh)" green
 echo
 
+# Get the Dashboard's password
 make get_ui_password
