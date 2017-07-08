@@ -42,6 +42,8 @@ kubectl create -f ./component/kafka/
 (exec ./scripts/wait_kafka.sh)
 (exec ./scripts/create_kafka_topics.sh)
 
+# Install Kafka-manager
+kubectl create -f ./component/kafka-manager/
 
 # Install elasticsearch
 kubectl create -f component/elasticsearch/

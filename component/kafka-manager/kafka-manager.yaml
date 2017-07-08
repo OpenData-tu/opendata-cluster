@@ -1,0 +1,56 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kafka-manager 
+  namespace: kafka 
+  labels:
+    k8s-app: kafka-manager 
+    kubernetes.io/cluster-service: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: kafka-manager
+  template:
+    metadata:
+      labels:
+        k8s-app: kafka-manager
+    spec:
+      containers:
+      - name: kafka-manager
+        image: sheepkiller/kafka-manager
+        resources:
+          # keep request = limit to keep this container in guaranteed class
+          limits:
+            cpu: 100m
+          requests:
+            cpu: 100m
+        env:
+          - name: "ZK_HOSTS"
+            value: "zookeeper.kafka:2181"
+          - name: "KM_ARGS"
+            value: "-Djava.net.preferIPv4Stack=true" 
+        ports:
+        - containerPort: 9000
+          name: ui
+          protocol: TCP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: kafka-manager
+  namespace: kafka
+  labels:
+    k8s-app: kafka-manager 
+    kubernetes.io/cluster-service: "true"
+    kubernetes.io/name: "manager"
+spec:
+  ports:
+  - port: 9000
+    protocol: TCP
+    targetPort: ui
+  selector:
+    k8s-app: kafka-manager 
+
