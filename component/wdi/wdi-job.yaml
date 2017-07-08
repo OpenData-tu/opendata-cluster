@@ -18,5 +18,5 @@ spec:
         - name: "KAFKA_BROKER_LIST"
           value: "kafka-0.broker.kafka.svc.cluster.local:9092"
         - name: "KAFKA_TOPIC" 
-          value: "main"
+          value: "wdi"
       restartPolicy: Never
