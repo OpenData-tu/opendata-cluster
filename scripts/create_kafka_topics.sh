@@ -1,6 +1,6 @@
 #!/bin/bash
 source ./scripts/colors.sh
-source ./config/required_kafka_topics
+source ./config/kafka_topics
 
 function create_topic {
   kubectl exec kafka-client \
