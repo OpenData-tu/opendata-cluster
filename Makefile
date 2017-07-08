@@ -1,6 +1,16 @@
 -include .env.mk 
 -include .aws_key.mk
 
+ifeq (listen,$(firstword $(MAKECMDGOALS)))
+  LISTEN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  $(eval $(LISTEN_ARGS):;@:)
+endif
+
+
+.PHONY: listen
+listen:
+	@./scripts/listen_kafka_topic.sh $(LISTEN_ARGS)
+
 # make
 .DEFAULT_GOAL := help
 
@@ -82,3 +92,8 @@ helm_delete:
 
 helm_init:
 	@helm init
+
+kafka_topics:
+	@./scripts/list_kafka_topics.sh
+
+
