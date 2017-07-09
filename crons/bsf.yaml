@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: bsf
 spec:
-  schedule: "* * * * *" # Run everyday at 12 noon UTC
+  schedule: "* 12 * * *" # Run everyday at 12 noon UTC
   jobTemplate:
     spec:
       template:
