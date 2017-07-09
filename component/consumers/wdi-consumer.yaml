@@ -1,0 +1,30 @@
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: go-validator
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: go-validator
+    spec:
+      containers:
+      - name: go-validator
+        image: tubpaul/go_consumer
+        env:
+          - name: "BROKER_URL"
+            value: "kafka.kafka:9092"
+          - name: "ELASTIC_URL"
+            value: "http://elasticsearch-logging:9200"
+          - name: "TOPICS"
+            value: "wdi"
+          - name: "CONSUMER_GROUP"
+            value: "wdi-group"
+          - name: "BULK_LIMIT"
+            value: "1000"
+          - name: "DATASOURCE_ID"
+            value: "wdi"
+          - name: "DEBUG"
+            value: "ture"
+      restartPolicy: Always
