@@ -6,6 +6,7 @@ Probably you will need to install [AWS Command Line Interface](https://aws.amazo
 
 # akops command
 To create aws ec2 spot instance you will need to use the binary file `akops`. You can find it at `./bin/akops` add the directory to your PATH environment variable to be able to use it.
+Important! the akops is too big for github. You can get it [here](https://drive.google.com/file/d/0B7v1s06naHzIYW1SS2JDMW8ycGc/view?usp=sharing) instead.
 
 # Config
 All script related configures are in `./config/` directory. You will need to rename the file `aws_key.sh.sample` to `aws_key.sh` and then fill it with your kops AWS user access key ID & Secret.
