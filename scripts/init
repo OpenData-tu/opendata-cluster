@@ -32,6 +32,9 @@ kubectl create -f ./component/zookeeper/
 # Install Kafka
 kubectl create -f ./component/kafka/
 (exec ./scripts/wait_kafka.sh)
+
+# Create Kafka topics
+(exec ./scripts/wait_zookeeper.sh)
 (exec ./scripts/create_kafka_topics.sh)
 
 # Install Kafka-manager
