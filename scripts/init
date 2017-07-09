@@ -14,19 +14,11 @@ make cluster_init
 # Wait for DNS to update
 (exec ./scripts/wait_dns.sh)
 
-# Remove the old helm and install the new one
-make helm_delete
-make helm_init
-make helm_add_repos
-
 # Install Kube Dashboard 
 make install_ui 
 
 # Install Heapster
 make install_monitoring
-
-# Wait for helm client to deploy
-(exec ./scripts/wait_helm.sh)
 
 # Install logging-elasticsearch
 kubectl create -f ./component/logging/ 
@@ -52,6 +44,9 @@ kubectl annotate service elasticsearch dns.alpha.kubernetes.io/external=es.${DNS
 # Scale elasticsearch
 kubectl scale rc --replicas=3 es-data
 
+# Deploy cronjobs
+# kubectl create -f ./crons/bsf.yaml
+
 cecho "Done." green 
 
 kubectl cluster-info
@@ -59,7 +54,6 @@ kubectl cluster-info
 echo
 cecho "For auto completion run the following commands:" blue
 cecho "source <(kubectl completion zsh)" green
-cecho "source <(helm completion zsh)" green
 cecho "source <(kops completion zsh)" green
 echo
 

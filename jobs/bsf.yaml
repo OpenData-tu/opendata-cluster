@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
       - name: bsf
-        image: aardila/bsf-uv-importer
+        image: olib10/bsf-uv-importer
         env:
         - name: "KAFKA_HOST"
           value: "kafka.kafka:9092"

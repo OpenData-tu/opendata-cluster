@@ -1,0 +1,59 @@
+apiVersion: kops/v1alpha2
+kind: Cluster
+metadata:
+  creationTimestamp: 2017-07-09T12:55:17Z
+  name: o.thinkdeep.io
+spec:
+  api:
+    loadBalancer:
+      type: Public
+  authorization:
+    alwaysAllow: {}
+  channel: stable
+  cloudLabels:
+    Owner: Amer
+    Stack: K8s-opendata
+  cloudProvider: aws
+  configBase: s3://o-thinkdeep-io-state-store/o.thinkdeep.io
+  dnsZone: o.thinkdeep.io
+  etcdClusters:
+  - etcdMembers:
+    - instanceGroup: master-us-east-2b
+      name: b
+    name: main
+  - etcdMembers:
+    - instanceGroup: master-us-east-2b
+      name: b
+    name: events
+  kubeAPIServer:
+    cloudProvider: aws
+    runtimeConfig:
+      batch/v2alpha1: "true"
+  kubernetesApiAccess:
+  - 0.0.0.0/0
+  kubernetesVersion: 1.7.0
+  masterInternalName: api.internal.o.thinkdeep.io
+  masterPublicName: api.o.thinkdeep.io
+  networkCIDR: 10.0.0.0/16
+  networking:
+    weave:
+      mtu: 8912
+  nonMasqueradeCIDR: 100.64.0.0/10
+  sshAccess:
+  - 0.0.0.0/0
+  subnets:
+  - cidr: 10.0.32.0/19
+    name: us-east-2b
+    type: Private
+    zone: us-east-2b
+  - cidr: 10.0.0.0/22
+    name: utility-us-east-2b
+    type: Utility
+    zone: us-east-2b
+  topology:
+    bastion:
+      bastionPublicName: bastion.o.thinkdeep.io
+    dns:
+      type: Public
+    masters: private
+    nodes: private

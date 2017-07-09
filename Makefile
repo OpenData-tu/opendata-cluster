@@ -8,7 +8,7 @@ endif
 
 
 .PHONY: listen
-listen:
+listen: ## Listen to a kafka topic. E.g.: make listen ${TOPIC_NAME}
 	@./scripts/listen_kafka_topic.sh $(LISTEN_ARGS)
 
 # make
@@ -30,7 +30,15 @@ init: ## Create the cluster and install everything
 down: cluster_delete
 
 # Initiates the whole cluster.
-cluster_init: cluster_create cluster_update
+cluster_init: cluster_create cluster_config cluster_update
+
+# To enable cronjob APIs it will add:
+#  kubeAPIServer:
+#    cloudProvider: aws
+#    runtimeConfig:
+#      batch/v2alpha1: "true"
+cluster_config:
+	kops replace -f ./config/kops.cluster.yaml
 
 cluster_update:
 	@kops update cluster $(NAME) --yes
@@ -93,7 +101,7 @@ helm_delete:
 helm_init:
 	@helm init
 
-kafka_topics:
+topics: ## List Kafka topics
 	@./scripts/list_kafka_topics.sh
 
 
