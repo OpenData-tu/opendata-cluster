@@ -14,7 +14,7 @@ spec:
         image: tubpaul/go_consumer
         env:
           - name: "BROKER_URL"
-            value: "kafka.kafka:9092"
+            value: "kafka-0.broker.kafka.svc.cluster.local:9092"
           - name: "ELASTIC_URL"
             value: "http://elasticsearch-logging:9200"
           - name: "TOPICS"
@@ -26,5 +26,5 @@ spec:
           - name: "DATASOURCE_ID"
             value: "wdi"
           - name: "DEBUG"
-            value: "ture"
+            value: "true"
       restartPolicy: Always
