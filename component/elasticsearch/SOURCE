@@ -1,0 +1,1 @@
+https://github.com/pires/kubernetes-elasticsearch-cluster

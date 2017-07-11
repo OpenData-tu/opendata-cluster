@@ -40,8 +40,16 @@ kubectl create -f ./component/kafka/
 # Install Kafka-manager
 kubectl create -f ./component/kafka-manager/
 
-# Install elasticsearch
-kubectl create -f ./component/elasticsearch/
+# Deploy elasticsearch Master
+kubectl create -f ./component/elasticsearch/es-discovery-svc.yaml
+kubectl create -f ./component/elasticsearch/es-svc.yaml
+kubectl create -f ./component/elasticsearch/es-master.yaml
+
+(exec ./scripts/wait_elasticsearch_master.sh)
+# Deploy elasticsearch Clients and Data
+kubectl create -f ./component/elasticsearch/es-client.yaml
+kubectl create -f ./component/elasticsearch/es-data.yaml
+
 kubectl annotate service elasticsearch dns.alpha.kubernetes.io/external=es.${DNS_ZONE}
 
 # Scale elasticsearch
