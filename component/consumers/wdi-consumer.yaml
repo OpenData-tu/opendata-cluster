@@ -26,7 +26,9 @@ spec:
           - name: "DATASOURCE_ID"
             value: "wdi"
           - name: "DEBUG"
-            value: "false" # "true"
+            value: "true" # "false" # "true"
+          - name: "TIMEOUT_SECONDS"
+            value: "10"
         resources:
           limits:
             cpu: "1"
