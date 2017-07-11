@@ -104,4 +104,8 @@ helm_init:
 topics: ## List Kafka topics
 	@./scripts/list_kafka_topics.sh
 
+deploy_consumers:
+	kubectl create -f component/consumers/
 
+deploy_jobs:
+	kubectl create -f jobs
