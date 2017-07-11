@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: go-validator
 spec:
-  replicas: 3
+  replicas: 1
   template:
     metadata:
       labels:
@@ -27,4 +27,11 @@ spec:
             value: "wdi"
           - name: "DEBUG"
             value: "true"
+        resources:
+          limits:
+            cpu: "1"
+            memory: 2000Mi
+          requests:
+            cpu: "1"
+            memory: 1000Mi
       restartPolicy: Always
