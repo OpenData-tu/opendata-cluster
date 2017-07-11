@@ -52,9 +52,6 @@ kubectl create -f ./component/elasticsearch/es-data.yaml
 
 kubectl annotate service elasticsearch dns.alpha.kubernetes.io/external=es.${DNS_ZONE}
 
-# Scale elasticsearch
-kubectl scale rc --replicas=3 es-data
-
 # Deploy cronjobs
 kubectl create -f ./crons/
 
