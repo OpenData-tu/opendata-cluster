@@ -18,7 +18,7 @@ cecho $TOPICS blue
 echo
 
 function find_topic {
-  if echo $1 | grep -q $2
+  if echo "$1" | grep -q $2
   then
     cecho "Found: $2" green
   else
@@ -29,5 +29,5 @@ function find_topic {
 
 for i in "${kafka_topics[@]}"
 do
-  find_topic $TOPICS $i
+  find_topic "$TOPICS" $i
 done
