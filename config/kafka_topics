@@ -1,2 +1,2 @@
 #/bin/bash
-kafka_topics=(wdi bsf)
+kafka_topics=(wdi bfs)

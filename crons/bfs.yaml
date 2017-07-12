@@ -1,21 +1,21 @@
 apiVersion: batch/v2alpha1
 kind: CronJob
 metadata:
-  name: bsf
+  name: bfs
 spec:
-  schedule: "* 12 * * *" # Run everyday at 12 noon UTC
+  schedule: "15 2 * * *" 
   jobTemplate:
     spec:
       template:
         metadata:
-          name: bsf
+          name: bfs
         spec:
           containers:
-          - name: bsf
-            image: olib10/bsf-uv-importer
+          - name: bfs
+            image: olib10/bfs-uv-importer:v0.2
             env:
             - name: "KAFKA_HOST"
               value: "kafka.kafka:9092"
             - name: "KAFKA_TOPIC" 
-              value: "bsf"
+              value: "bfs"
           restartPolicy: Never 
