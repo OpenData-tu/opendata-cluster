@@ -109,3 +109,6 @@ deploy_consumers:
 
 deploy_jobs:
 	kubectl create -f jobs
+
+deljobs: ## Delete all job in the default namespace
+	@bash ./scripts/deljobs.sh
