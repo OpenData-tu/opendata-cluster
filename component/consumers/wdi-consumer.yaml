@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
       - name: go-validator
-        image: tubpaul/go_consumer
+        image: tubpaul/go_consumer_no_timeout
         env:
           - name: "BROKER_URL"
             value: "kafka-0.broker.kafka.svc.cluster.local:9092"
@@ -26,7 +26,7 @@ spec:
           - name: "DATASOURCE_ID"
             value: "wdi"
           - name: "DEBUG"
-            value: "true" # "false" # "true"
+            value: "" #"true"
           - name: "TIMEOUT_SECONDS"
             value: "10"
         resources:
