@@ -15,6 +15,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: wdi-<%= day %>
+  labels:
+    job: wdi
 spec:
   template:
     metadata:
@@ -32,6 +34,11 @@ spec:
           value: "kafka-0.broker.kafka.svc.cluster.local:9092"
         - name: "KAFKA_TOPIC"
           value: "wdi"
+        resources:
+          limits:
+            memory: 1400Mi
+          requests:
+            memory: 700Mi
       restartPolicy: Never
 }
 end
