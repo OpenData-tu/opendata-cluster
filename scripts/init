@@ -35,7 +35,7 @@ kubectl create -f ./component/kafka/
 (exec ./scripts/wait_kafka.sh)
 
 # Create Kafka topics
-(exec ../scripts/create_wait_kafka_topics.sh)
+(exec ./scripts/create_wait_kafka_topics.sh)
 
 # Deploy Kafka-manager
 kubectl create -f ./component/kafka-manager/
