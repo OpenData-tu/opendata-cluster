@@ -105,10 +105,12 @@ topics: ## List Kafka topics
 	@./scripts/list_kafka_topics.sh
 
 deploy_consumers:
-	kubectl create -f component/consumers/
+	kubectl create -f component/docker-logstash-kafka-es/logstash-kafka-es-rc.yaml
+#	kubectl create -f component/consumers/
 
 delete_consumers:
-	kubectl delete -f component/consumers/
+	kubectl delete -f component/docker-logstash-kafka-es/logstash-kafka-es-rc.yaml
+#	kubectl delete -f component/consumers/
 
 deploy_jobs:
 	kubectl create -f jobs
