@@ -55,6 +55,9 @@ kubectl annotate service elasticsearch dns.alpha.kubernetes.io/external=es.${DNS
 # Deploy cronjobs
 kubectl create -f ./crons/
 
+# Logstash consumer
+kubectl create -f ./component/docker-logstash-kafka-es/logstash-kafka-es-rc.yaml
+
 cecho "Done." green 
 
 kubectl cluster-info

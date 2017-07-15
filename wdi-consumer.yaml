@@ -1,0 +1,31 @@
+apiVersion: apps/v1beta1 # for versions before 1.6.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: logstash
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: logstash
+    spec:
+      containers:
+      - name: logstash
+        image: vungle/logstash-kafka-es
+        env:
+          - name: "ZK_CONNECT_LIST"
+            value: "zookeeper.kafka:2181"
+          - name: "KAFKA_TOPIC"
+            value: "wdi"
+          - name: "ES_URL"
+            value: "http://elasticsearch:9200"
+          - name: "ES_INDEX"
+            value: "wdi"
+        resources:
+          limits:
+            cpu: "1"
+            memory: 1000Mi
+          requests:
+            cpu: "1"
+            memory: 1000Mi
+      restartPolicy: Always
