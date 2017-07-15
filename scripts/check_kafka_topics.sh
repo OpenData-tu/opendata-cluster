@@ -5,7 +5,7 @@ source ./config/kafka_topics
 die() { exit 1; }
 
 echo
-cecho "Getting Kafak's topics..." yellow
+cecho "Getting Kafka's topics..." yellow
 
 TOPICS=`kubectl exec kafka-client --namespace=kafka -- \
   ./bin/kafka-topics.sh \
