@@ -14,5 +14,5 @@ function create_topic {
 
 for i in "${kafka_topics[@]}"
 do
-  create_topic $i 1 1
+  create_topic $i 3 1
 done
