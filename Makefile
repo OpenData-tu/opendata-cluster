@@ -45,6 +45,7 @@ cluster_update:
 
 cluster_create:
 	akops create cluster \
+	--ssh-public-key=~/.ssh/id_opendata_rsa.pub \
 	--cloud=aws \
 	--zones=$(ZONES) \
 	--node-count=$(NODE_COUNT) \
