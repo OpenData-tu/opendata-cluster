@@ -14,6 +14,6 @@ All script related configures are in `./config/` directory. You will need to ren
 # Make file
 Use `make help` command to get a list of the most import commands. Anyway, you will need to read into the `Makefile` for the full list of commands.
 
-# Important node
+# Important notes
 - Be aware that this tool is still under heavy development and operating it may not be a smooth experience.
 - Be careful not to publish any sensitive information on Github.
