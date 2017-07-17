@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: logstash-kafka-es-rc
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: logstash
+    spec:
+      containers:
+      - name: logstash
+        image: vungle/logstash-kafka-es:2.2.0
+        env:
+        - name: ZK_CONNECT_LIST
+          value: zoo.kafka
+        - name: KAFKA_TOPIC
+          value: wdi
+        - name: ES_URL
+          value: "elasticsearch:9200"
+        - name: ES_INDEX
+          value: wdi
+        - name: BATCH_SIZE
+          value: "10000"
+        - name: GROUPID
+          value: wdi-g
+#        - name: JAVA_OPTS
+#          value: "-XX:+UseG1GC -Djava.awt.headless=true -XX:+HeapDumpOnOutOfMemoryError"
+
