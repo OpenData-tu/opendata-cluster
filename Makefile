@@ -50,10 +50,10 @@ cluster_create:
 	--zones=$(ZONES) \
 	--node-count=$(NODE_COUNT) \
 	--node-size=r4.large \
-	--node-price=0.015 \
+	--node-price=0.017 \
 	--master-zones=$(MASTER_ZONES) \
 	--master-size=r4.large \
-	--master-price=0.015 \
+	--master-price=0.017 \
 	--dns-zone=$(DNS_ZONE) \
 	--cloud-labels=$(CLOUD_LABELS) \
 	--network-cidr=$(NETWORK_CIDR) \
